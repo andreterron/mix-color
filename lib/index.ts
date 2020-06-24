@@ -46,22 +46,7 @@ function fixColor(a: any, b: any, t: any) {
 }
 
 function fixAlpha(a: any, b: any, t: any) {
-  t = 1 - t < 0 ? 0 : 1 - t;
-  let n: any;
-  if (a * b === 1) {
-    n = 1;
-  } else if (a === 0) {
-    n = b * t;
-  } else if (b === 0) {
-    n = a * t;
-  } else if (t === 0) {
-    n = a * b;
-  } else {
-    n = a * b * t;
-  }
-  n = n > 1 ? 1 : n;
-  n = n < 0 ? 0 : n;
-  return (n.toFixed(4) * 10000) / 10000;
+  return parseFloat(Math.max(0, Math.min(1, a + (b - a) * t)).toFixed(4))
 }
 
 function mixColor(from: any, to: any, point = 1) {
